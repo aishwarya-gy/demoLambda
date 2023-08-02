@@ -13,6 +13,12 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @GetMapping("/products")
+    public ResponseEntity<Iterable<Product>> getAllProducts(){
+        Iterable<Product> list = this.productService.getAllProducts();
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
     @PostMapping("/product")
     public ResponseEntity<Product> createProduct(@RequestBody Product product){
         Product savedProduct = this.productService.saveProduct(product);
